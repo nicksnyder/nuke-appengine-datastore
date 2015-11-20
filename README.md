@@ -19,3 +19,9 @@ $ goapp deploy -application YOURAPPID nuker.yaml
 2. Type in the entity name you want to nuke (or leave empty to nuke all entities)
 3. Click the nuke button
 4. Wait.
+
+## Why?
+
+The implementation is pretty dumb. It queries the keys for all the entities in one batch, and then deletes them as fast as possible in batches of 500 (the max size of a delete batch in App Engine) concurrently. The initial query can take a while depending on how much data you have, so I just set the query timeout really long.
+
+The benefit of this approach is that if you are operating within free quota (i.e. billing disabled), you can delete about 40x more data than you should be able to given the free quota limits because it takes a wile for App Engine to realize you are over quota.
