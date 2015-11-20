@@ -1,5 +1,5 @@
 # nuke-appengine-datastore
-Implements a module for Google App Engine that exposes a single endpoint to wipe your datastore.
+Implements a Google App Engine module that exposes a single endpoint to wipe your datastore.
 
 ## Run locally
 
